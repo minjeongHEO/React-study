@@ -1,3 +1,7 @@
+.yarn/*
+yarn-4.1.1.cjs
+.prettierrc
+
 # Logs
 logs
 *.log
@@ -22,3 +26,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.yarn/install-state.gz
+.yarn/releases/yarn-4.1.1.cjs
