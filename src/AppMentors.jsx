@@ -1,20 +1,8 @@
 import React, { useState } from 'react';
 
 export default function AppMentor() {
-    const [person, setPerson] = useState({
-        name: '우디',
-        title: '개발자',
-        mentors: [
-            {
-                name: '슈니',
-                title: '시니어개발자',
-            },
-            {
-                name: '멜리사',
-                title: '시니어개발자',
-            },
-        ],
-    });
+    const [person, setPerson] = useState(initPerson);
+
     const changeMentor = (e) => {
         const prevName = prompt(`누구의 이름을 바꾸고 싶은가요?`);
         const currentName = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
@@ -67,3 +55,18 @@ export default function AppMentor() {
         </div>
     );
 }
+
+const initPerson = {
+    name: '우디',
+    title: '개발자',
+    mentors: [
+        {
+            name: '슈니',
+            title: '시니어개발자',
+        },
+        {
+            name: '멜리사',
+            title: '시니어개발자',
+        },
+    ],
+};
