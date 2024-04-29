@@ -7,9 +7,10 @@ import AppMentors from "./AppMentors.jsx";
 import AppMentorsImmer from "./AppMentorsImmer.jsx";
 import AppForm from "./AppForm.jsx";
 import AppTheme from "./AppTheme.jsx";
+import AppTodo from "./AppTodo.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <AppTheme />
+        <AppTodo />
     </React.StrictMode>
 );
