@@ -60,6 +60,10 @@ export default function AppTodo() {
         setTodoItem(prev => ({ ...prev, completed: prev.completed.filter(({ id }) => id !== targetId) }));
     };
 
+    const activeEnter = ({ key }) => {
+        if (key === "Enter") addTodoList();
+    };
+
     return (
         <div className='container'>
             <nav>
@@ -94,7 +98,7 @@ export default function AppTodo() {
                         ))}
                 </ul>
 
-                <input type='text' name='text' onChange={handleChange} value={input}></input>
+                <input type='text' name='text' onChange={handleChange} value={input} onKeyDown={e => activeEnter(e)}></input>
                 <button onClick={addTodoList}>Add</button>
             </main>
         </div>
