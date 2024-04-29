@@ -9,6 +9,11 @@ li {
     list-style: none;
 }
 
+.strike-through {
+    text-decoration: line-through;
+    color: darkgray;
+}
+
 .container {
     width: 80vw;
     height: 50vh;

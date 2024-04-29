@@ -30,9 +30,25 @@ export default function AppTodo() {
         setTodoItem(prev => ({ ...prev, active: [...prev.active, { id, value: input }] }));
     };
 
+    const toCompleted = (targetId, targetValue) => {
+        setTodoItem(prev => ({
+            active: prev.active.filter(({ id }) => id !== targetId),
+            completed: [...prev.completed, { id: targetId, value: targetValue }],
+        }));
+    };
+    const toActive = (targetId, targetValue) => {
+        setTodoItem(prev => ({
+            active: [...prev.active, { id: targetId, value: targetValue }],
+            completed: prev.completed.filter(({ id }) => id !== targetId),
+        }));
+    };
+
     // 체크박스
-    const changeCheckBox = () => {
-        // setTodoItem(prev => ({ ...prev, active: [...prev.active, form] }));
+    const changeCheckBox = ({ target }) => {
+        const targetId = target.id;
+        const targetValue = target.value;
+        if (target.checked) toCompleted(targetId, targetValue);
+        if (!target.checked) toActive(targetId, targetValue);
     };
 
     return (
@@ -45,10 +61,17 @@ export default function AppTodo() {
             </nav>
             <main>
                 <ul>
-                    {todoItem.active.map(todoItem => (
-                        <li key={todoItem.id}>
-                            <input type='checkbox' onChange={changeCheckBox} />
-                            {todoItem.value}
+                    {todoItem.active.map(activeItem => (
+                        <li key={activeItem.id}>
+                            <input type='checkbox' id={activeItem.id} value={activeItem.value} onChange={changeCheckBox} />
+                            <span>{activeItem.value}</span>
+                            <FaTrashAlt />
+                        </li>
+                    ))}
+                    {todoItem.completed.map(completedItem => (
+                        <li key={completedItem.id}>
+                            <input type='checkbox' id={completedItem.id} value={completedItem.value} onChange={changeCheckBox} checked />
+                            <span className='strike-through'>{completedItem.value}</span>
                             <FaTrashAlt />
                         </li>
                     ))}
