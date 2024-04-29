@@ -25,6 +25,7 @@ export default function AppTodo() {
 
     // Add
     const addTodoList = () => {
+        if (input === "") return;
         const id = randomId();
         setTodoItem(prev => ({ ...prev, active: [...prev.active, { id, value: input }] }));
         setInput("");
@@ -98,7 +99,7 @@ export default function AppTodo() {
                         ))}
                 </ul>
 
-                <input type='text' name='text' onChange={handleChange} value={input} onKeyDown={e => activeEnter(e)}></input>
+                <input type='text' onChange={handleChange} value={input} onKeyDown={e => activeEnter(e)} placeholder='📓 MY TODO LIST'></input>
                 <button onClick={addTodoList}>Add</button>
             </main>
         </div>
