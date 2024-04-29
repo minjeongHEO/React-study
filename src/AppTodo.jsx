@@ -6,7 +6,6 @@ import "./AppTodo.css";
 export default function AppTodo() {
     const [todoItem, setTodoItem] = useState({ active: [], completed: [] });
     const [filterType, setFilterType] = useState("All");
-    const [form, setForm] = useState({ id: "", value: "" });
     const [input, setInput] = useState("");
 
     const showByFilter = e => {
@@ -28,6 +27,7 @@ export default function AppTodo() {
     const addTodoList = () => {
         const id = randomId();
         setTodoItem(prev => ({ ...prev, active: [...prev.active, { id, value: input }] }));
+        setInput("");
     };
 
     const toCompleted = (targetId, targetValue) => {
@@ -51,6 +51,15 @@ export default function AppTodo() {
         if (!target.checked) toActive(targetId, targetValue);
     };
 
+    const deleteItem = targetId => {
+        if (todoItem.active.some(({ id }) => id === targetId)) {
+            setTodoItem(prev => ({ ...prev, active: prev.active.filter(({ id }) => id !== targetId) }));
+            return;
+        }
+
+        setTodoItem(prev => ({ ...prev, completed: prev.completed.filter(({ id }) => id !== targetId) }));
+    };
+
     return (
         <div className='container'>
             <nav>
@@ -65,14 +74,14 @@ export default function AppTodo() {
                         <li key={activeItem.id}>
                             <input type='checkbox' id={activeItem.id} value={activeItem.value} onChange={changeCheckBox} />
                             <span>{activeItem.value}</span>
-                            <FaTrashAlt />
+                            <FaTrashAlt onClick={() => deleteItem(activeItem.id)} />
                         </li>
                     ))}
                     {todoItem.completed.map(completedItem => (
                         <li key={completedItem.id}>
                             <input type='checkbox' id={completedItem.id} value={completedItem.value} onChange={changeCheckBox} checked />
                             <span className='strike-through'>{completedItem.value}</span>
-                            <FaTrashAlt />
+                            <FaTrashAlt onClick={() => deleteItem(completedItem.id)} />
                         </li>
                     ))}
                 </ul>
