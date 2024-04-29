@@ -13,6 +13,10 @@ li {
     text-decoration: line-through;
     color: darkgray;
 }
+.selected {
+    text-decoration: underline;
+    font-weight: bold;
+}
 
 .container {
     width: 80vw;

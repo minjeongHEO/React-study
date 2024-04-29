@@ -64,9 +64,15 @@ export default function AppTodo() {
         <div className='container'>
             <nav>
                 <CgDarkMode />
-                <span onClick={showByFilter}>All</span>
-                <span onClick={showByFilter}>Active</span>
-                <span onClick={showByFilter}>Completed</span>
+                <span onClick={showByFilter} className={filterType === "All" && "selected"}>
+                    All
+                </span>
+                <span onClick={showByFilter} className={filterType === "Active" && "selected"}>
+                    Active
+                </span>
+                <span onClick={showByFilter} className={filterType === "Completed" && "selected"}>
+                    Completed
+                </span>
             </nav>
             <main>
                 <ul>
