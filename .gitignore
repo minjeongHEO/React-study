@@ -28,3 +28,4 @@ dist-ssr
 *.sw?
 .yarn/install-state.gz
 .yarn/releases/yarn-4.1.1.cjs
+.vercel
