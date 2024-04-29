@@ -76,20 +76,22 @@ export default function AppTodo() {
             </nav>
             <main>
                 <ul>
-                    {todoItem.active.map(activeItem => (
-                        <li key={activeItem.id}>
-                            <input type='checkbox' id={activeItem.id} value={activeItem.value} onChange={changeCheckBox} />
-                            <span>{activeItem.value}</span>
-                            <FaTrashAlt onClick={() => deleteItem(activeItem.id)} />
-                        </li>
-                    ))}
-                    {todoItem.completed.map(completedItem => (
-                        <li key={completedItem.id}>
-                            <input type='checkbox' id={completedItem.id} value={completedItem.value} onChange={changeCheckBox} checked />
-                            <span className='strike-through'>{completedItem.value}</span>
-                            <FaTrashAlt onClick={() => deleteItem(completedItem.id)} />
-                        </li>
-                    ))}
+                    {(filterType === "All" || filterType === "Active") &&
+                        todoItem.active.map(activeItem => (
+                            <li key={activeItem.id}>
+                                <input type='checkbox' id={activeItem.id} value={activeItem.value} onChange={changeCheckBox} />
+                                <span>{activeItem.value}</span>
+                                <FaTrashAlt onClick={() => deleteItem(activeItem.id)} />
+                            </li>
+                        ))}
+                    {(filterType === "All" || filterType === "Completed") &&
+                        todoItem.completed.map(completedItem => (
+                            <li key={completedItem.id}>
+                                <input type='checkbox' id={completedItem.id} value={completedItem.value} onChange={changeCheckBox} checked />
+                                <span className='strike-through'>{completedItem.value}</span>
+                                <FaTrashAlt onClick={() => deleteItem(completedItem.id)} />
+                            </li>
+                        ))}
                 </ul>
 
                 <input type='text' name='text' onChange={handleChange} value={input}></input>
