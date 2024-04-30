@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
 import { FaTrashAlt } from "react-icons/fa";
 import "./AppTodo.css";
 
 export default function AppTodo() {
-    const [todoItem, setTodoItem] = useState({ active: [], completed: [] });
+    const [todoItem, setTodoItem] = useState(JSON.parse(localStorage.getItem("todoItem")));
     const [filterType, setFilterType] = useState("All");
     const [input, setInput] = useState("");
 
@@ -64,6 +64,10 @@ export default function AppTodo() {
     const activeEnter = ({ key }) => {
         if (key === "Enter") addTodoList();
     };
+
+    useEffect(() => {
+        localStorage.setItem("todoItem", JSON.stringify(todoItem));
+    }, [todoItem]);
 
     return (
         <div className='container'>
