@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
-import { FaTrashAlt } from "react-icons/fa";
 import "./AppTodo.css";
 import TodoList from "./components/TodoList";
 
@@ -87,10 +86,10 @@ export default function AppTodo() {
             <main>
                 <ul>
                     {(filterType === "All" || filterType === "Active") && (
-                        <TodoList items={todoItem.active} deleteItem={deleteItem} changeCheckBox={changeCheckBox} />
+                        <TodoList todoItem={todoItem} deleteItem={deleteItem} changeCheckBox={changeCheckBox} type={"active"} />
                     )}
                     {(filterType === "All" || filterType === "Completed") && (
-                        <TodoList items={todoItem.completed} deleteItem={deleteItem} changeCheckBox={changeCheckBox} />
+                        <TodoList todoItem={todoItem} deleteItem={deleteItem} changeCheckBox={changeCheckBox} type={"completed"} />
                     )}
                 </ul>
 
