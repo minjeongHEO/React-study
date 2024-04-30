@@ -19,9 +19,7 @@ export default function AppTodo() {
     };
 
     // 랜덤id생성
-    const randomId = () => {
-        return (new Date().getTime() + Math.floor(Math.random() * 10)).toString();
-    };
+    const randomId = () => (new Date().getTime() + Math.floor(Math.random() * 10)).toString();
 
     // Add
     const addTodoList = () => {
@@ -72,19 +70,29 @@ export default function AppTodo() {
     return (
         <div className='container'>
             <nav>
-                <CgDarkMode />
-                <span onClick={showByFilter} className={filterType === "All" ? "selected" : undefined}>
-                    All
-                </span>
-                <span onClick={showByFilter} className={filterType === "Active" ? "selected" : undefined}>
-                    Active
-                </span>
-                <span onClick={showByFilter} className={filterType === "Completed" ? "selected" : undefined}>
-                    Completed
-                </span>
+                <ul className='navBar'>
+                    <li className='pointer_cursor'>
+                        <CgDarkMode className='darkmode_icon' />
+                    </li>
+                    <li className='pointer_cursor'>
+                        <span onClick={showByFilter} className={filterType === "All" ? "selected" : undefined} test>
+                            All
+                        </span>
+                    </li>
+                    <li className='pointer_cursor'>
+                        <span onClick={showByFilter} className={filterType === "Active" ? "selected" : undefined}>
+                            Active
+                        </span>
+                    </li>
+                    <li className='pointer_cursor'>
+                        <span onClick={showByFilter} className={filterType === "Completed" ? "selected" : undefined}>
+                            Completed
+                        </span>
+                    </li>
+                </ul>
             </nav>
             <main>
-                <ul>
+                <ul className='main_list'>
                     {(filterType === "All" || filterType === "Active") && (
                         <TodoList todoItem={todoItem} deleteItem={deleteItem} changeCheckBox={changeCheckBox} type={"active"} />
                     )}
@@ -93,8 +101,10 @@ export default function AppTodo() {
                     )}
                 </ul>
 
-                <input type='text' onChange={handleChange} value={input} onKeyDown={e => activeEnter(e)} placeholder='📓 MY TODO LIST'></input>
-                <button onClick={addTodoList}>Add</button>
+                <div className='input_container'>
+                    <input type='text' onChange={handleChange} value={input} onKeyDown={e => activeEnter(e)} placeholder='📓 MY TODO LIST'></input>
+                    <button onClick={addTodoList}>Add</button>
+                </div>
             </main>
         </div>
     );

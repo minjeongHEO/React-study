@@ -18,7 +18,7 @@ export default function TodoList({ todoItem, deleteItem, changeCheckBox, type })
                         checked={type === "completed" ? true : false}
                     />
                     <span className={type === "completed" ? "strike-through" : ""}>{activeItem.value}</span>
-                    <FaTrashAlt onClick={() => deleteItem(activeItem.id)} />
+                    <FaTrashAlt className='pointer_cursor' onClick={() => deleteItem(activeItem.id)} />
                 </li>
             ))}
         </>
