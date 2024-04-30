@@ -5,7 +5,7 @@ import TodoList from "./components/TodoList";
 import { DarkModeContext } from "./context/DarkModeContext";
 
 export default function AppTodo() {
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+    const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
     const [todoItem, setTodoItem] = useState(JSON.parse(localStorage.getItem("todoItem")));
     const [filterType, setFilterType] = useState("All");
     const [input, setInput] = useState("");

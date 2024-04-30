@@ -1,14 +1,19 @@
 body {
     background: var(--bg-gradient);
+    color: var(--font-color);
     &.light {
         --bg-gradient: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-        /* --bg-color: #e7eefa; */
         --bg-color: #e9e7fa;
         --bg-list-color: #ffffff;
         --bg-shadow: rgba(60, 60, 66, 0.2);
+        --font-color: #333333;
     }
     &.dark {
         --bg-gradient: linear-gradient(90deg, rgba(54, 39, 45, 1) 0%, rgba(64, 81, 99, 1) 100%);
+        --bg-color: #323237;
+        --bg-list-color: #424242;
+        --bg-shadow: rgba(0, 0, 0, 0.5);
+        --font-color: #fefefe;
     }
 }
 
