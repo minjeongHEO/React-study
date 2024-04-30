@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
 import "./AppTodo.css";
 import TodoList from "./components/TodoList";
+import { DarkModeContext } from "./context/DarkModeContext";
 
 export default function AppTodo() {
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
     const [todoItem, setTodoItem] = useState(JSON.parse(localStorage.getItem("todoItem")));
     const [filterType, setFilterType] = useState("All");
     const [input, setInput] = useState("");
@@ -72,7 +74,7 @@ export default function AppTodo() {
             <nav>
                 <ul className='navBar'>
                     <li className='pointer_cursor'>
-                        <CgDarkMode className='darkmode_icon' />
+                        <CgDarkMode onClick={toggleDarkMode} className='darkmode_icon' />
                     </li>
                     <li className='pointer_cursor'>
                         <span onClick={showByFilter} className={filterType === "All" ? "selected" : undefined} test>

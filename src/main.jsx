@@ -8,9 +8,12 @@ import AppMentorsImmer from "./AppMentorsImmer.jsx";
 import AppForm from "./AppForm.jsx";
 import AppTheme from "./AppTheme.jsx";
 import AppTodo from "./AppTodo.jsx";
+import { DarkModeProvider } from "./context/DarkModeContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <AppTodo />
+        <DarkModeProvider>
+            <AppTodo />
+        </DarkModeProvider>
     </React.StrictMode>
 );
