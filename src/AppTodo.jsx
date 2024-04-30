@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
 import { FaTrashAlt } from "react-icons/fa";
 import "./AppTodo.css";
+import TodoList from "./components/TodoList";
 
 export default function AppTodo() {
     const [todoItem, setTodoItem] = useState(JSON.parse(localStorage.getItem("todoItem")));
@@ -20,7 +21,7 @@ export default function AppTodo() {
 
     // 랜덤id생성
     const randomId = () => {
-        return new Date().getTime().toString();
+        return (new Date().getTime() + Math.floor(Math.random() * 10)).toString();
     };
 
     // Add
@@ -85,22 +86,12 @@ export default function AppTodo() {
             </nav>
             <main>
                 <ul>
-                    {(filterType === "All" || filterType === "Active") &&
-                        todoItem.active.map(activeItem => (
-                            <li key={activeItem.id}>
-                                <input type='checkbox' id={activeItem.id} value={activeItem.value} onChange={changeCheckBox} />
-                                <span>{activeItem.value}</span>
-                                <FaTrashAlt onClick={() => deleteItem(activeItem.id)} />
-                            </li>
-                        ))}
-                    {(filterType === "All" || filterType === "Completed") &&
-                        todoItem.completed.map(completedItem => (
-                            <li key={completedItem.id}>
-                                <input type='checkbox' id={completedItem.id} value={completedItem.value} onChange={changeCheckBox} checked />
-                                <span className='strike-through'>{completedItem.value}</span>
-                                <FaTrashAlt onClick={() => deleteItem(completedItem.id)} />
-                            </li>
-                        ))}
+                    {(filterType === "All" || filterType === "Active") && (
+                        <TodoList items={todoItem.active} deleteItem={deleteItem} changeCheckBox={changeCheckBox} />
+                    )}
+                    {(filterType === "All" || filterType === "Completed") && (
+                        <TodoList items={todoItem.completed} deleteItem={deleteItem} changeCheckBox={changeCheckBox} />
+                    )}
                 </ul>
 
                 <input type='text' onChange={handleChange} value={input} onKeyDown={e => activeEnter(e)} placeholder='📓 MY TODO LIST'></input>
