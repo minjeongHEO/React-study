@@ -1,6 +1,8 @@
 # React + Vite + Yarn2
 
-# Vercel
+---
+
+# 배포 : Vercel
 
 `yarn add -D vercel`
 
@@ -12,10 +14,17 @@
 
 `yarn deploy`
 
-### [React Icons](https://www.npmjs.com/package/react-icons)
+### immer 사용 시
 
-`yarn add react-icons`
-[아이콘](https://primer.style/foundations/icons)
+-   개발용  
+    `yarn add -d immer use-immer`
+-   배포에도 사용 시  
+    `yarn add immer use-immer`
+
+### 아이콘 사용하기 [React Icons](https://www.npmjs.com/package/react-icons)
+
+`yarn add react-icons`  
+[아이콘 고르기](https://primer.style/foundations/icons)
 
 ### 📓 Todo List App
 
