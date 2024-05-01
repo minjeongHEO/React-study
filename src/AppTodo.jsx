@@ -6,7 +6,12 @@ import { DarkModeContext } from './context/DarkModeContext';
 
 export default function AppTodo() {
     const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
-    const [todoItem, setTodoItem] = useState(JSON.parse(localStorage.getItem('todoItem')));
+
+    const getInitialTodo = () => {
+        const savedTodo = localStorage.getItem('todoItem');
+        return savedTodo && savedTodo.active ? JSON.parse(savedTodo) : { active: [], completed: [] };
+    };
+    const [todoItem, setTodoItem] = useState(getInitialTodo);
     const [filterType, setFilterType] = useState('All');
     const [input, setInput] = useState('');
 
@@ -77,7 +82,7 @@ export default function AppTodo() {
                         <CgDarkMode onClick={toggleDarkMode} className="darkmode_icon" />
                     </li>
                     <li className="pointer_cursor">
-                        <span onClick={showByFilter} className={filterType === 'All' ? 'selected' : undefined} test>
+                        <span onClick={showByFilter} className={filterType === 'All' ? 'selected' : undefined}>
                             All
                         </span>
                     </li>
